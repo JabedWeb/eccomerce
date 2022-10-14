@@ -16,18 +16,18 @@ const Shop = () => {
                              <div className="widget2 my-3">
                                 <h5>Category</h5>
                                 <ul className='list-group'>
-                                    <li className='list-group-item'><a href="">Men</a></li>
-                                    <li className='list-group-item'><a href="">Women</a></li>
-                                    <li className='list-group-item'><a href="">Electronic</a></li>
-                                    <li className='list-group-item'><a href="">Kids</a></li>
+                                    <li className='list-group-item'><a href="#">Men</a></li>
+                                    <li className='list-group-item'><a href="#">Women</a></li>
+                                    <li className='list-group-item'><a href="#">Electronic</a></li>
+                                    <li className='list-group-item'><a href="#">Kids</a></li>
                                 </ul>
                              </div>
                              <div className="widget2 my-3">
                                 <h5 >Tags</h5>
                                 <div className="tags">
-                                <a href="">Eid</a>
-                                <a href="">Kids</a>
-                                <a href="">Puja</a>
+                                <a href="#">Eid</a>
+                                <a href="#">Kids</a>
+                                <a href="#">Puja</a>
                                 </div>
                              </div>
                              <div className="widget2 my-3">
