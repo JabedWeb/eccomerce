@@ -19,6 +19,14 @@ const productSchema=mongoose.Schema({
     },
     photo : {
         type : String,
+    },
+    category : {
+        type : Array,
+        default : []
+    },
+    tags : {
+        type : Array,
+        default : []
     }
 },{
     timestamps : true
