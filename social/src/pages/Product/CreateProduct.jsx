@@ -25,6 +25,45 @@ const CreateProduct = () => {
         }))
     }
 
+    //for category state
+    const handleCheckboxChange =(e)=>{
+        if(e.target.checked){
+            let cats=input.category
+            cats.push(e.target.value);
+            setInput((prevState)=>({
+                ...prevState,
+                category : cats
+            }))
+        }
+        else{
+        let cats = input.category;
+        const newCats=cats.filter(data=>data !==e.target.value);
+        setInput((prevState)=>({
+            ...prevState,
+            category : newCats
+        }))
+        }
+    }
+
+    const handleTagsChange =(e)=>{
+        if(e.target.checked){
+            let tag=input.tags
+            tag.push(e.target.value)
+            setInput((prevState)=>({
+                ...prevState,
+                tags : tag
+            }))
+        }
+        else{
+            let tag =input.tags;
+            const newTags=tag.filter(data=>data!==e.target.value);
+            setInput((prevState)=>({
+                ...prevState,
+                tags : newTags
+            }))
+        }
+    }
+
   return (
     <>
     <div className="container mt-5">
@@ -58,14 +97,14 @@ const CreateProduct = () => {
                                     <label htmlFor="">Category</label>
                                     <hr />
                                     <label htmlFor="">
-                                        <input type="checkbox" value='Men' /> Men                                    </label>
+                                        <input onChange={handleCheckboxChange} type="checkbox" value='Men' /> Men                                    </label>
                                     <br />
                                     <label htmlFor="">
-                                        <input type="checkbox" value='Women' /> Women
+                                        <input onChange={handleCheckboxChange}  type="checkbox" value='Women' /> Women
                                     </label>
                                     <br />
                                     <label htmlFor="">
-                                        <input type="checkbox" value='Electronic' /> Electronic                                    </label>
+                                        <input onChange={handleCheckboxChange}  type="checkbox" value='Electronic' /> Electronic                                    </label>
                                     <br />
                                     
                                 </div>
@@ -73,14 +112,14 @@ const CreateProduct = () => {
                                     <label htmlFor="">Tags</label>
                                     <hr />
                                     <label htmlFor="">
-                                        <input type="checkbox" value='Eid' /> Eid
+                                        <input onChange={handleTagsChange} type="checkbox" value='Eid' /> Eid
                                     </label>
                                     <br />
                                     <label htmlFor="">
-                                        <input type="checkbox" value='Kids' /> Kids                                    </label>
+                                        <input onChange={handleTagsChange} type="checkbox" value='Kids' /> Kids                                    </label>
                                     <br />
                                     <label htmlFor="">
-                                        <input type="checkbox" value='Puja' /> Pujs                                   </label>
+                                        <input onChange={handleTagsChange} type="checkbox" value='Puja' /> Pujs                                   </label>
                                     <br />
                                     
                                 </div>
