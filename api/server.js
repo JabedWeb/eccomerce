@@ -7,6 +7,7 @@ import productRoute from './routes/product.js';
 import mongoDBConnect from './config/db.js';
 import errorHandler from './middlewares/errorHandler.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 
 
 
@@ -21,6 +22,7 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 app.use(cookieParser()); 
+app.use(cors());
 
  
 // init env variables
@@ -31,7 +33,6 @@ const PORT = process.env.SERVER_PORT || 5000;
 app.use('/api/product',productRoute)
 app.use('/api/student' , studentRoute );
 app.use('/api/user' , userRoute );
-
 
 
 

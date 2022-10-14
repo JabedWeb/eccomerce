@@ -19,6 +19,10 @@ const productSchema=mongoose.Schema({
     },
     photo : {
         type : String,
+        default : 'p.png'
+    },
+    file : {
+        type :String,
     },
     category : {
         type : Array,

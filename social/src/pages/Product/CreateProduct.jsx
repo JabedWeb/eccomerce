@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import swal from 'sweetalert'
 
 const CreateProduct = () => {
 
@@ -21,8 +23,9 @@ const CreateProduct = () => {
             ...prevState,
             [e.target.name]:e.target.value,
             [e.target.regular_price]:e.target.value,
-            [e.target.sale_price] : e.tar.value
-        }))
+            [e.target.sale_price] : e.target.value,
+            [e.target.stock] : e.target.value
+        }));
     }
 
     //for category state
@@ -64,6 +67,61 @@ const CreateProduct = () => {
         }
     }
 
+    //handle Photo
+
+    const handleProductPhoto =(e)=> {
+        setInput((prevState)=>({
+            ...prevState,
+            file : e.target.files[0]
+
+        }))
+    }
+
+    //form submit
+    const productHandleForm = async(e)=> {
+        e.preventDefault();
+
+        const data =new FormData();
+        data.append('name',input.name)
+        data.append('regular_price',input.regular_price)
+        data.append('sale_price',input.sale_price)
+        data.append('category',input.category)
+        data.append('tags',input.tags)
+        data.append('photo',input.file)
+
+
+       try {
+        await axios.post(`http://localhost:5050/api/product`,data)
+        .then(res=>{
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                icon: "success",
+                button: "Aww yiss!",
+              });
+
+              e.target.reset()
+              setInput((prevState)=>({
+                name : '',
+                regular_price : '',
+                sale_price : '',
+                stock :'',
+                photo : [],
+                file : '',
+                category : [],
+                tags : []
+              }))
+        })
+        .catch(err=>{
+            console.log(err);
+        });
+        
+       } catch (error) {
+        console.log(error);
+       }
+
+    }
+
   return (
     <>
     <div className="container mt-5">
@@ -73,7 +131,7 @@ const CreateProduct = () => {
                         <div className="card-body">
                         <Link className='btn btn-primary' to="/admin/product">All Product</Link>
                         <h2 className='text-center my-2'>Add New Product</h2>
-                            <form action="">
+                            <form onSubmit={productHandleForm} method="POST" encType='multipart/form-data'>
                                 <div className="my-3">
                                     <label htmlFor="">Name</label>
                                     <br />
@@ -88,10 +146,14 @@ const CreateProduct = () => {
                                     <label htmlFor="">Sale Price</label>
                                     <input name='sale_price' onChange={handleInputChange} value={input.sale_price} className='form-control' type="text" />
                                 </div>
+                                <div className="my-3">
+                                    <label htmlFor="">Stock</label>
+                                    <input name='stock' onChange={handleInputChange} value={input.stock} className='form-control' type="text" />
+                                </div>
                         
                                 <div className="my-3">
                                     <label htmlFor="">Photo</label>
-                                    <input className='form-control' type="file" />
+                                    <input name='photo' onChange={handleProductPhoto} className='form-control' type="file" />
                                 </div>
                                 <div className="my-3">
                                     <label htmlFor="">Category</label>

@@ -34,7 +34,10 @@ export const getSingleProduct= async(req,res,next)=>{
 export const createProduct=async(req,res,next)=>{
 
    try {
-    const product= await Product.create(req.body);
+    const product= await Product.create({
+        ...req.body,
+        photo : req.file.filename
+    });
     if(product){
         res.status(200).json({
             message : 'product added Successful'
