@@ -28,6 +28,10 @@ app.use(cors());
 // init env variables
 const PORT = process.env.SERVER_PORT || 5000;
 
+//static folder
+
+app.use(express.static('api/public'))
+
 
 // routes 
 app.use('/api/product',productRoute)

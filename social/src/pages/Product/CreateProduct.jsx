@@ -129,7 +129,8 @@ const CreateProduct = () => {
             <div className="col-md-6">
                     <div className="card shadow">
                         <div className="card-body">
-                        <Link className='btn btn-primary' to="/admin/product">All Product</Link>
+                        <Link className='btn btn-primary mx-2' to="/admin/product">All Product</Link>
+                        <Link className='btn btn-success' to="/">Shop</Link>
                         <h2 className='text-center my-2'>Add New Product</h2>
                             <form onSubmit={productHandleForm} method="POST" encType='multipart/form-data'>
                                 <div className="my-3">
