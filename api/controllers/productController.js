@@ -32,11 +32,18 @@ export const getSingleProduct= async(req,res,next)=>{
 }
 
 export const createProduct=async(req,res,next)=>{
-
+    let gallery =[];
+ 
+    for(let i=0;i<req.files.gallery.length;i++){
+        gallery.push( req.files.gallery[i].filename)
+    }
    try {
     const product= await Product.create({
         ...req.body,
-        photo : req.file.filename
+        photo : req.files.photo[0].filename,
+        gallery : gallery,
+        category : req.body.category.split(','),
+        tags : req.body.tags.split(',')
     });
     if(product){
         res.status(200).json({
