@@ -10,9 +10,9 @@ const CreateProduct = () => {
         name : '',
         regular_price : '',
         sale_price : '',
-        stock :'',
-        photo : [],
+        stock : '',
         file : '',
+        gall : [],
         category : [],
         tags : []
     });
@@ -77,6 +77,14 @@ const CreateProduct = () => {
         }))
     }
 
+    //handle gallery 
+    const handleProductGallery =(e)=>{
+        setInput ((prevState)=>({
+            ...prevState,
+                gall :e.target.files
+        }))
+    }
+
     //form submit
     const productHandleForm = async(e)=> {
         e.preventDefault();
@@ -85,9 +93,17 @@ const CreateProduct = () => {
         data.append('name',input.name)
         data.append('regular_price',input.regular_price)
         data.append('sale_price',input.sale_price)
+        data.append('stock',input.stock)
         data.append('category',input.category)
         data.append('tags',input.tags)
         data.append('photo',input.file)
+        for(let i=0;i<input.gall.length;i++){
+            data.append('gallery',input.gall[i])
+        }
+
+        //gallery (database)
+        //gall (react/redux)
+        
 
 
        try {
@@ -95,7 +111,7 @@ const CreateProduct = () => {
         .then(res=>{
             swal({
                 title: "Good job!",
-                text: "You clicked the button!",
+                text: "Product added successful",
                 icon: "success",
                 button: "Aww yiss!",
               });
@@ -106,14 +122,19 @@ const CreateProduct = () => {
                 regular_price : '',
                 sale_price : '',
                 stock :'',
-                photo : [],
+                gall : [],
                 file : '',
                 category : [],
                 tags : []
               }))
         })
         .catch(err=>{
-            console.log(err);
+            swal({
+                title: "Failed job!",
+                text: "Product Added Failed",
+                icon: "Danger",
+                button: "Aww yiss!",
+              });
         });
         
        } catch (error) {
@@ -155,6 +176,10 @@ const CreateProduct = () => {
                                 <div className="my-3">
                                     <label htmlFor="">Photo</label>
                                     <input name='photo' onChange={handleProductPhoto} className='form-control' type="file" />
+                                </div>
+                                <div className="my-3">
+                                    <label htmlFor="">Gallery</label>
+                                    <input name='gallery' onChange={handleProductGallery} className='form-control' type="file"  multiple/>
                                 </div>
                                 <div className="my-3">
                                     <label htmlFor="">Category</label>

@@ -19,7 +19,17 @@ const storage = multer.diskStorage({
 
 const upload =multer({
     storage 
-}).single('photo')
+}).fields([
+    {
+        name : 'photo',
+        maxCount : 1
+    },
+    {
+        name : 'gallery',
+        maxCount : 10
+    }
+
+])
 
 
 router.get('/',getAllProduct);
