@@ -21,8 +21,9 @@ const productSchema=mongoose.Schema({
         type : String,
         default : 'p.png'
     },
-    file : {
-        type :String,
+    gallery : {
+        type :Array,
+        default : []
     },
     category : {
         type : Array,
