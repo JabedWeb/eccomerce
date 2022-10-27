@@ -1,8 +1,8 @@
 
 
  const initialState = {
-    products : [];
-    skeleton : true;
+    products : [],
+    skeleton : true
 }
 
 export default initialState
